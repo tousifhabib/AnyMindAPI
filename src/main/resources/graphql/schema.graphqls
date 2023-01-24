@@ -1,0 +1,34 @@
+type Query{
+    transactions: [Transaction]
+    sales( startDateTime: String!, endDateTime: String ) : [Sales]
+}
+
+type Transaction{
+    id: ID!
+    price: Float
+    paymentMethod: String
+    priceModifier: Float
+    dateTime: String
+}
+
+type Sales{
+    dateTime: String!
+    sales: Float!
+    points: Int!
+}
+
+type TransactionResult{
+    finalPrice: Float
+    points: Int
+}
+
+type Mutation{
+    addTransaction(transaction: TransactionInput) : TransactionResult
+}
+
+input TransactionInput{
+    price: Float!,
+    paymentMethod: String!,
+    priceModifier: Float!,
+    dateTime: String!
+}

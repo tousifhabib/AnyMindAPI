@@ -25,3 +25,63 @@ docker run --name anymindDB -p 4444:5432 -e POSTGRES_USER=postgres -e POSTGRES_P
 The database should now be set up
 
 ##Setting up the code
+#Installing Maven Packages
+In the terminal run:
+```
+mvn clean install
+```
+
+#Running Spring Boot:
+```
+mvn spring-boot:run
+```
+
+That's it, the API is set up.
+
+##Using GraphQL
+
+GraphQL queries can be run on:
+```
+localhost:9000/graphiql
+```
+
+The following queries are possible:
+
+# Creating a transaction:
+```
+mutation {
+  addTransaction(transaction:{
+    price: 100.00,
+    paymentMethod: "MASTERCARD",
+    priceModifier: 0.96
+    dateTime: "2022-09-04T06:09:00Z"
+  }){
+    finalPrice
+    points
+  }
+}
+```
+
+# Displaying a list of transactions:
+```
+query {
+  transactions{
+    price
+    paymentMethod
+    dateTime
+    priceModifier
+  }
+}
+```
+
+# Sales broken down by hour:
+```
+query{
+  sales(startDateTime:"2022-09-01T00:00:00Z", 
+    endDateTime: "2022-09-05T19:00:00Z"){
+    dateTime
+    sales
+    points
+  }
+}
+```

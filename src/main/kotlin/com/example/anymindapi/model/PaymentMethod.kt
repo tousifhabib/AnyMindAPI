@@ -2,12 +2,12 @@ package com.example.anymindapi.model
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "PAYMENT_METHOD")
+@Table(name = "PAYMENT_METHODS")
 data class PaymentMethod (
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
     @Column(name = "payment_method", nullable = false)
     val paymentMethod: String,
     @Column(name = "max_modifier", nullable = false)
