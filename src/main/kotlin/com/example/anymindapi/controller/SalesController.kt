@@ -8,15 +8,10 @@ import org.springframework.stereotype.Controller
 import java.time.ZonedDateTime
 
 @Controller
-class SalesController(
-    private val transactionRepository: TransactionRepository
-) : Any() {
+class SalesController(private val transactionRepository: TransactionRepository)  {
     @QueryMapping
     fun sales(@Argument startDateTime: ZonedDateTime, @Argument endDateTime: ZonedDateTime) : List<TransactionOfHour> {
-
-        val allSales = transactionRepository.findTransactionsByHour(startDateTime, endDateTime)
-
-        return allSales
+        return transactionRepository.findTransactionsByHour(startDateTime, endDateTime)
     }
 
 }
